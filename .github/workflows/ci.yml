@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  workflow_dispatch:
+  pull_request:
+  release:
+    types:
+      - published
+  push:
+    branches:
+      - coatl
+    tags:
+      - '*'
+
+jobs:
+  self-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Update pre-commit hooks
+        uses: ./
+        id: pre-commit-autoupdate
+        with:
+          pr-create: 'no'
+
+      - name: Show Output
+        run: |
+          echo "pre-commit updates are present: ${{ steps.pre-commit-autoupdate.outputs.update-hit }}"
