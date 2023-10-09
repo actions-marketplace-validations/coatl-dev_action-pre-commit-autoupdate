@@ -2,8 +2,8 @@ name: pre-commit-autoupdate
 
 on:
   schedule:
-    # Tuesday at 18:00 UTC
-    - cron: '0 18 * * 2'
+    # Monday at 12:00 PST
+    - cron: '0 20 * * 1'
 
 jobs:
   pre-commit-autoupdate:
