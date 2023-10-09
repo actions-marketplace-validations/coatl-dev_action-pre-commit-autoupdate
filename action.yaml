@@ -120,7 +120,7 @@ runs:
       shell: bash
       run: |
         repos=$(git diff "${{ inputs.config }}" | grep 'https://[a-zA-Z0-9./?=_%:-]*')
-        echo "repos=$repos" >> "$GITHUB_OUTPUT""
+        echo "repos=$repos" >> "$GITHUB_OUTPUT"
 
     - name: Configure git
       if: ${{ steps.git-diff.outputs.diff == 'true' && inputs.pr-create == 'yes' }}
