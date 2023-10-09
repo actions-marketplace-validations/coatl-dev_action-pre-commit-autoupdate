@@ -1,3 +1,9 @@
+## v0.2.2 (2023-10-09)
+
+### Fix
+
+- fix commit add command (#7)
+
 ## v0.2.1 (2023-10-09)
 
 ### Refactor

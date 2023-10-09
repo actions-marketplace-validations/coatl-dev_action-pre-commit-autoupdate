@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Update pre-commit hooks
-        uses: coatl-dev/action-pre-commit-autoupdate@v0.2.1
+        uses: coatl-dev/action-pre-commit-autoupdate@v0.2.2
         with:
           config: 'path/to/alternate/pre-commit-config.yaml'
           gh-token: ${{ secrets.GH_TOKEN }}
