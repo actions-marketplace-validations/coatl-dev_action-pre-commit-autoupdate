@@ -115,7 +115,7 @@ runs:
         git diff --quiet "${{ inputs.config }}" || echo "diff=true" >> "$GITHUB_OUTPUT"
 
     - name: Configure git
-      if: ${{ steps.git-diff.outputs.diff == 'true' }}
+      if: ${{ steps.git-diff.outputs.diff == 'true' && inputs.pr-create == 'yes' }}
       shell: bash
       run: |
         git config --local user.email "${{ inputs.committer-email }}"
