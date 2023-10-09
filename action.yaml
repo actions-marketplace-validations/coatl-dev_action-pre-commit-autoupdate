@@ -119,8 +119,8 @@ runs:
       id: updated
       shell: bash
       run: |
-        repos=$(git diff "${{ inputs.config }}" | grep 'https://[a-zA-Z0-9./?=_%:-]*')
-        echo "repos=$repos" >> "$GITHUB_OUTPUT"
+        echo "updates:" > pr.body
+        git diff .pre-commit-config.yaml | grep 'https://[a-zA-Z0-9./?=_%:-]*' | sed -e 's/ \{2,\}/  /g' >> pr.body
 
     - name: Configure git
       if: ${{ steps.git-diff.outputs.diff == 'true' && inputs.pr-create == 'yes' }}
@@ -153,7 +153,4 @@ runs:
           --title "${{ inputs.pr-title }}" \
           --base "${{ inputs.pr-base-branch }}" \
           --head "${{ inputs.pr-branch }}" \
-          --body "
-          updates:
-          ${{ steps.updated.repos }}
-          "
+          --body-file pr.body
