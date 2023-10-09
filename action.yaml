@@ -126,7 +126,7 @@ runs:
       shell: bash
       run: |
         git checkout -B "${{ inputs.pr-branch }}"
-        git commit add "${{ inputs.config }}"
+        git add "${{ inputs.config }}"
         git commit -m "${{ inputs.pr-title }}"
 
     - name: Push changes
