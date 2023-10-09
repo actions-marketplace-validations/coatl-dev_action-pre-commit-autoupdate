@@ -49,6 +49,11 @@ inputs:
       Title for the pull request.
     required: false
     default: 'build(deps): coatl-dev pre-commit autoupdate'
+  pre-commit-skip-hooks:
+    description: >-
+      A comma separated list of hook ids which will be disabled.
+    required: false
+    default: ''
   skip-repos:
     description: >-
       A list of repos to exclude from autoupdate.
@@ -97,6 +102,8 @@ runs:
 
     - name: Run pre-commit
       shell: bash
+      env:
+        SKIP: ${{ inputs.pre-commit-skip-hooks }}
       run: |
         pre-commit install
         pre-commit run --all-files

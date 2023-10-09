@@ -12,8 +12,8 @@ name: pre-commit-autoupdate
 
 on:
   schedule:
-    # Monday at 00:00 UTC
-    - cron: '0 0 * * 1'
+    # Monday at 10:00 PST
+    - cron: '0 18 * * 1'
 
 jobs:
   pre-commit-autoupdate:
@@ -26,6 +26,7 @@ jobs:
         uses: coatl-dev/action-pre-commit-autoupdate@v0.1.0
         with:
           gh-token: ${{ secrets.GH_TOKEN }}
+          pre-commit-skip-hooks: 'pylint'
           skip-repos: 'flake8' # There's no need for the whole URL
 ```
 
@@ -45,6 +46,7 @@ The full syntax for this action is:
     pr-branch: 'coatl-dev-pre-commit-autoupdate' # string. The branch that contains commits for your pull request. Defaults to 'coatl-dev-pre-commit-autoupdate'. Optional.
     pr-create: 'yes' # string. Whether to create a Pull Request. Options: 'yes', 'no'. Optional.
     pr-title: 'build(deps): coatl-dev pre-commit autoupdate' # string. Title for the pull request. Defaults to 'build(deps): coatl-dev pre-commit autoupdate'. Optional.
+    pre-commit-skip-hooks: '' # string. A comma separated list of hook ids which will be disabled.
     skip-repos: 'repo1|repo2|repo3' # string. A list of repos to exclude from autoupdate. The repos must be separated by a "pipe" character '|'. Defaults to ''. Optional.
 ```
 
