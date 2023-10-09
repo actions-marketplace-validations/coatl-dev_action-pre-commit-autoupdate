@@ -25,33 +25,42 @@ jobs:
       - name: Update pre-commit hooks
         uses: coatl-dev/action-pre-commit-autoupdate@v0.2.0
         with:
+          config: 'path/to/alternate/pre-commit-config.yaml'
           gh-token: ${{ secrets.GH_TOKEN }}
-          pre-commit-skip-hooks: 'pylint'
+          skip-hooks: 'pylint'
           skip-repos: 'flake8' # There's no need for the whole URL
 ```
 
 ## Full syntax
 
-The full syntax for this action is:
+### Inputs
 
-```yml
-  uses: coatl-dev/action-pre-commit-autoupdate@v0.2.0 # or v0
-  with:
-    cache: 'yes' # string. Whether to enable caching. Options: 'yes', 'no'. Optional.
-    committer-email: 'johndoe@example.com' # string. Email address used for setting up Git identity. Defaults to '146358438+coatl-bot@users.noreply.github.com'. Optional.
-    committer-name: 'John Doe' # string. Name used for setting up Git identity. Defaults to 'coatl-bot'. Optional.
-    config: 'path/to/config' # string. Path to pre-commit config file. Defaults to '.pre-commit-config.yaml'. Optional.
-    gh-token: ${{ secrets.GH_TOKEN }} # secret. GitHub token. Required.
-    pr-base-branch: 'main' # string. The branch into which you want your code merged. Defaults to 'main'. Optional.
-    pr-branch: 'coatl-dev-pre-commit-autoupdate' # string. The branch that contains commits for your pull request. Defaults to 'coatl-dev-pre-commit-autoupdate'. Optional.
-    pr-create: 'yes' # string. Whether to create a Pull Request. Options: 'yes', 'no'. Optional.
-    pr-title: 'build(deps): coatl-dev pre-commit autoupdate' # string. Title for the pull request. Defaults to 'build(deps): coatl-dev pre-commit autoupdate'. Optional.
-    pre-commit-skip-hooks: '' # string. A comma separated list of hook ids which will be disabled.
-    skip-repos: 'repo1|repo2|repo3' # string. A list of repos to exclude from autoupdate. The repos must be separated by a "pipe" character '|'. Defaults to ''. Optional.
-```
+- `cache` (`string`): Whether to enable caching. Options: `'yes'`, `'no'`.
+  Defaults to `'yes'`. Optional.
+- `committer-email` (`string`): Email address used for setting up Git identity.
+  Defaults to `'146358438+coatl-bot@users.noreply.github.com'`. Optional.
+- `committer-name` (`string`): Name used for setting up Git identity. Defaults
+  to `'coatl-bot'`. Optional.
+- `config` (`string`): Path to pre-commit config file. Defaults to
+  `'.pre-commit-config.yaml'`. Optional.
+- `gh-token` (`secret`): GitHub token. Required.
+- `pr-base-branch` (`string`): The branch into which you want your code merged.
+  Defaults to `'main'`. Optional.
+- `pr-branch` (`string`): The branch that contains commits for your pull request.
+  Defaults to `'coatl-dev-pre-commit-autoupdate'`. Optional.
+- `pr-create` (`string`): Whether to create a Pull Request. Options: `'yes'`,
+  `'no'`. Defaults to `'yes'`. Optional.
+- `pr-title` (`string`): Title for the pull request. Defaults to
+  `'build(deps): coatl-dev pre-commit autoupdate'`. Optional.
+- `skip-hooks` (`string`): A comma separated list of hook ids which will be
+  disabled. Useful when your `pre-commit-config.yaml` file contains
+  [`local hooks`]. Optional. See: [Temporarily disabling hooks].
+- `skip-repos`: A list of repos to exclude from autoupdate. The repos must be
+  separated by a "pipe" character `'|'`. Defaults to `''`. Optional.
 
 ## Outputs
 
-### `update-hit`
+- `update-hit` (`string`): Output is available with a string value that indicates whether a cache hit occurred on the primary key.
 
-**update-hit** output is available with a string value that indicates whether a cache hit occurred on the primary key:
+[`local hooks`]: https://pre-commit.com/#repository-local-hooks
+[Temporarily disabling hooks]: https://pre-commit.com/#temporarily-disabling-hooks
