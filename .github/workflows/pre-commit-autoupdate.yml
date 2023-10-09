@@ -17,3 +17,4 @@ jobs:
         uses: ./
         with:
           gh-token: ${{ secrets.COATL_BOT_GH_TOKEN }}
+          pr-base-branch: 'coatl'
