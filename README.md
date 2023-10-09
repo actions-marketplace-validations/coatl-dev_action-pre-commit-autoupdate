@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Update pre-commit hooks
-        uses: coatl-dev/action-pre-commit-autoupdate@v0.0.1
+        uses: coatl-dev/action-pre-commit-autoupdate@v0.1.0
         with:
           gh-token: ${{ secrets.GH_TOKEN }}
           skip-repos: 'flake8' # There's no need for the whole URL
@@ -34,7 +34,7 @@ jobs:
 The full syntax for this action is:
 
 ```yml
-  uses: coatl-dev/action-pre-commit-autoupdate@v0.0.1 # or v0
+  uses: coatl-dev/action-pre-commit-autoupdate@v0.1.0 # or v0
   with:
     cache: 'yes' # string. Whether to enable caching. Options: 'yes', 'no'. Optional.
     committer-email: 'johndoe@example.com' # string. Email address used for setting up Git identity. Defaults to '146358438+coatl-bot@users.noreply.github.com'. Optional.
