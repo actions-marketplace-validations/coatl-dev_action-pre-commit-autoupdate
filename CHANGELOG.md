@@ -1,3 +1,10 @@
+## v0.2.1 (2023-10-09)
+
+### Refactor
+
+- configure git conditionally (#6)
+- rename pre-commit-skip-hooks input parameter (#5)
+
 ## v0.2.0 (2023-10-09)
 
 ### Feat
