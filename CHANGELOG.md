@@ -1,3 +1,9 @@
+## v0.2.0 (2023-10-09)
+
+### Feat
+
+- add ability to skip pre-commit hooks (#3)
+
 ## v0.1.0 (2023-10-08)
 
 ### Feat
