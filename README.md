@@ -58,9 +58,10 @@ jobs:
 - `skip-repos`: A list of repos to exclude from autoupdate. The repos must be
   separated by a "pipe" character `'|'`. Defaults to `''`. Optional.
 
-## Outputs
+### Outputs
 
-- `update-hit` (`string`): Output is available with a string value that indicates whether a cache hit occurred on the primary key.
+- `update-hit` (`string`): Output is available with a string value that
+  indicates whether pre-commit repos were updated.
 
 [`local hooks`]: https://pre-commit.com/#repository-local-hooks
 [Temporarily disabling hooks]: https://pre-commit.com/#temporarily-disabling-hooks
