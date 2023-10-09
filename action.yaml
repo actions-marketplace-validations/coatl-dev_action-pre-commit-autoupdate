@@ -126,8 +126,9 @@ runs:
       if: ${{ steps.git-diff.outputs.diff == 'true' && inputs.pr-create == 'yes' }}
       shell: bash
       run: |
-        git config --local user.email "${{ inputs.committer-email }}"
-        git config --local user.name "${{ inputs.committer-name }}"
+        # git config --local user.email "${{ inputs.committer-email }}"
+        # git config --local user.name "${{ inputs.committer-name }}"
+        echo "${{ inputs.gh-token }}" | gh auth login --with-token
 
     - name: Commit changes
       if: ${{ steps.git-diff.outputs.diff == 'true' && inputs.pr-create == 'yes' }}
@@ -146,8 +147,6 @@ runs:
     - name: Create Pull Request
       if: ${{ steps.git-diff.outputs.diff == 'true' && inputs.pr-create == 'yes' }}
       shell: bash
-      env:
-        GH_TOKEN: ${{ inputs.gh-token }}
       run: |
         gh pr create \
           --title "${{ inputs.pr-title }}" \
