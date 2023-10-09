@@ -8,7 +8,7 @@ To use this action, add the following step to your workflow file (e.g.
 `.github/workflows/schedule.yaml`).
 
 ```yml
-name: scheduled
+name: pre-commit-autoupdate
 
 on:
   schedule:
@@ -36,12 +36,14 @@ The full syntax for this action is:
 ```yml
   uses: coatl-dev/action-pre-commit-autoupdate@v0.0.1 # or v0
   with:
+    cache: 'yes' # string. Whether to enable caching. Options: 'yes', 'no'. Optional.
     committer-email: 'johndoe@example.com' # string. Email address used for setting up Git identity. Defaults to '146358438+coatl-bot@users.noreply.github.com'. Optional.
     committer-name: 'John Doe' # string. Name used for setting up Git identity. Defaults to 'coatl-bot'. Optional.
     config: 'path/to/config' # string. Path to pre-commit config file. Defaults to '.pre-commit-config.yaml'. Optional.
     gh-token: ${{ secrets.GH_TOKEN }} # secret. GitHub token. Required.
     pr-base-branch: 'main' # string. The branch into which you want your code merged. Defaults to 'main'. Optional.
     pr-branch: 'coatl-dev-pre-commit-autoupdate' # string. The branch that contains commits for your pull request. Defaults to 'coatl-dev-pre-commit-autoupdate'. Optional.
+    pr-create: 'yes' # string. Whether to create a Pull Request. Options: 'yes', 'no'. Optional.
     pr-title: 'build(deps): coatl-dev pre-commit autoupdate' # string. Title for the pull request. Defaults to 'build(deps): coatl-dev pre-commit autoupdate'. Optional.
     skip-repos: 'repo1|repo2|repo3' # string. A list of repos to exclude from autoupdate. The repos must be separated by a "pipe" character '|'. Defaults to ''. Optional.
 ```

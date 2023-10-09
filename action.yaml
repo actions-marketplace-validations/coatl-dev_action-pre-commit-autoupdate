@@ -5,6 +5,11 @@ branding:
   color: green
   icon: command
 inputs:
+  cache:
+    description: >-
+      Whether to enable caching.
+    required: false
+    default: 'yes'
   committer-email:
     description: >-
       Email address used for setting up Git identity.
@@ -36,7 +41,6 @@ inputs:
     default: 'coatl-dev-pre-commit-autoupdate'
   pr-create:
     description: >-
-      [DO NOT USE]
       Whether to create a Pull Request.
     required: false
     default: 'yes'
@@ -64,6 +68,7 @@ runs:
         python-version: '3.11'
 
     - name: Cache pip
+      if: ${{ inputs.cache == 'yes' }}
       uses: actions/cache@v3
       with:
         path: ~/.cache/pip
@@ -76,10 +81,11 @@ runs:
         python -m pip install --upgrade pre-commit
 
     - name: Cache pre-commit
+      if: ${{ inputs.cache == 'yes' }}
       uses: actions/cache@v3
       with:
         path: ~/.cache/pre-commit
-        key: coatl-dev-action-pre-commit-autoupdate-${{ env.pythonLocation }}
+        key: coatl-dev-action-pre-commit-autoupdate-${{ env.pythonLocation }}-${{ hashFiles(inputs.config) }}
 
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash
